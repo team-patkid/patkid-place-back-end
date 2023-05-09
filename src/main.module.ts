@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { CommonModule } from './common/common.module';
+import { CommonController } from './module/common/common.controller';
 
 @Module({
-  imports: [CommonModule],
-  providers: [],
+  imports: [],
+  controllers: [CommonController],
 })
 export class MainModule {}
