@@ -1,5 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('common')
 @Controller()
 export class CommonController {
   constructor() {}
@@ -8,4 +9,4 @@ export class CommonController {
   public healthcheck(): string {
     return 'OK';
   }
-}
+}   
