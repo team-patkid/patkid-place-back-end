@@ -8,8 +8,10 @@ export class InternalServerErrorFilter extends BaseExceptionFilter {
     const response = host.switchToHttp().getResponse();
     const request = host.switchToHttp().getRequest();
 
+    const message = typeof exception.getResponse() === 'string' ? exception.message : (exception.getResponse() as Record<string, any>).message;
+
     Logger.info({
-      message: exception.message,
+      message,
       data: {
         status: exception.getStatus(),
         stack: exception.stack,
@@ -19,7 +21,7 @@ export class InternalServerErrorFilter extends BaseExceptionFilter {
 
     response.status(500).json({
       result: false,
-      message: exception.message,
+      message,
     });
   }
 }
