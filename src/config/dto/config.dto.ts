@@ -6,4 +6,7 @@ export enum SupportedEnvironment {
 export interface Configuration {
   ENV: SupportedEnvironment;
   PORT: number;
+
+  //Sentry
+  SENTRY_DSN: string;
 }

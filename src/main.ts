@@ -7,7 +7,9 @@ import { Logger } from './log/logger';
 import { MainModule } from './main.module';
 
 import { ValidationPipe } from '@nestjs/common';
+import * as Sentry from '@sentry/node';
 import rTracer from 'cls-rtracer';
+import { version } from '../package.json';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
@@ -31,6 +33,14 @@ async function bootstrap() {
       validationError: { target: false, value: false },
     }),
   );
+
+  Sentry.init({
+    dsn: ConfigService.getConfig().SENTRY_DSN,
+    enabled: true,
+    release: version,
+    environment: ConfigService.getConfig().ENV,
+    attachStacktrace: true,
+  });
 
   Logger.info({
     message: `App started on env ${ConfigService.getConfig().ENV}, port ${ConfigService.getConfig().PORT}`,

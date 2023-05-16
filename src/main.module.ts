@@ -1,8 +1,7 @@
 import { Module, ValidationPipe } from '@nestjs/common';
-import { HttpErrorFilter } from './filter/http-exception-filter';
-import { CommonController } from './module/common/common.controller';
-import { InternalServerErrorFilter } from './filter/internal-server-error-exception';
 import { APP_FILTER, APP_PIPE } from '@nestjs/core';
+import { ExceptionFilter } from './filter/exception-filter';
+import { CommonController } from './module/common/common.controller';
 
 @Module({
   imports: [],
@@ -10,11 +9,7 @@ import { APP_FILTER, APP_PIPE } from '@nestjs/core';
   providers: [
     {
       provide: APP_FILTER,
-      useClass: HttpErrorFilter,
-    },
-    {
-      provide: APP_FILTER,
-      useClass: InternalServerErrorFilter,
+      useClass: ExceptionFilter,
     },
     {
       provide: APP_PIPE,

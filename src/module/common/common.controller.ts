@@ -7,6 +7,7 @@ export class CommonController {
 
   @Get('healthcheck')
   public healthcheck(): string {
+    
     return 'OK';
   }
 }   
