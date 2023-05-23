@@ -9,4 +9,11 @@ export interface Configuration {
 
   //Sentry
   SENTRY_DSN: string;
+
+  DB_INFO: {
+    URI: string,
+    USER: string,
+    PASSWORD: string,
+    DATABASE: string,
+  }
 }
