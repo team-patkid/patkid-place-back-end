@@ -1,9 +1,11 @@
 import { Controller, Get } from '@nestjs/common';
-import { QuestionService } from './question.service';
-import { Question } from './question.schema';
-import { ResponseList } from 'src/decorator/response-list.decorator';
+import { ApiTags } from '@nestjs/swagger';
 import { ResponseListDto } from 'src/decorator/dto/response.list.dto';
+import { ResponseList } from 'src/decorator/response-list.decorator';
+import { GetQuestionListResponse } from './dto/question.dto';
+import { QuestionService } from './question.service';
 
+@ApiTags('QUESTION')
 @Controller('question')
 export class QuestionController {
   constructor(
@@ -11,8 +13,8 @@ export class QuestionController {
   ) {}
 
   @Get()
-  @ResponseList(Question)
-  public async getQuestionList(): Promise<ResponseListDto<Question>> {
+  @ResponseList(GetQuestionListResponse)
+  public async getQuestionList(): Promise<ResponseListDto<GetQuestionListResponse>> {
     const result = await this.questionService.getQuestionList();
     return new ResponseListDto(result);
   }

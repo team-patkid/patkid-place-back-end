@@ -5,6 +5,7 @@ import { CommonController } from './module/common/common.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseConfigService } from './database/mongoose.config.service';
 import { QuestionModule } from './module/question/question.module';
+import { UserModule } from './module/user/user.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { QuestionModule } from './module/question/question.module';
       useClass: MongooseConfigService,
     }),
     QuestionModule,
+    UserModule,
   ],
   controllers: [CommonController],
   providers: [

@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { QuestionDto } from './dto/question.dto';
 
 export type QuestionDocument = HydratedDocument<Question>;
 
@@ -21,20 +22,10 @@ export enum AnswerType {
   P = 'P',
 }
 
-export interface AnswerDto {
-  type: AnswerType,
-  comment: string,
-}
-
-export interface QuestionDto {
-  comment: string,
-  answer: Array<AnswerDto>,
-}
-
 @Schema({
   timestamps: true,  //자동으로 등록일, 수정일을 넣어줍니다.
   collection: 'QUESTION',
-  _id: false,
+  _id: true,
 })
 export class Question {
   @Prop({ required: true })
